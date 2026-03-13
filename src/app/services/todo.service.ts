@@ -151,7 +151,7 @@ export class TodoService {
     const debugTodos: Todo[] = [
       // 8 pending petitions
       {
-        id: Date.now() + 1,
+        id: 1,
         title: 'Rename "Boring Street" to literally anything else',
         description:
           'Residents of Boring Street demand a more exciting name. Current suggestions: "Much More Interesting Avenue" or "Street McStreetface"',
@@ -159,7 +159,7 @@ export class TodoService {
         createdAt: new Date(Date.now() - 3600000).toISOString(),
       },
       {
-        id: Date.now() + 2,
+        id: 2,
         title: 'Install giant rubber duck in town fountain',
         description:
           'A 15-foot inflatable rubber duck would make the fountain 847% more enjoyable. We did the math.',
@@ -167,7 +167,7 @@ export class TodoService {
         createdAt: new Date(Date.now() - 7200000).toISOString(),
       },
       {
-        id: Date.now() + 3,
+        id: 3,
         title: 'Declare Tuesdays as "Backwards Day"',
         description:
           'All municipal employees must walk backwards and speak in reverse. It would improve morale by at least 3%.',
@@ -175,7 +175,7 @@ export class TodoService {
         createdAt: new Date(Date.now() - 10800000).toISOString(),
       },
       {
-        id: Date.now() + 4,
+        id: 4,
         title: 'Build time machine for fixing past mistakes',
         description:
           'Petition for city to invest in temporal technology. Would definitely help with that regrettable statue from 1987.',
@@ -183,7 +183,7 @@ export class TodoService {
         createdAt: new Date(Date.now() - 14400000).toISOString(),
       },
       {
-        id: Date.now() + 5,
+        id: 5,
         title: 'Mandatory nap time for all citizens',
         description:
           '2-3 PM is now legally protected sleep time. Violators will be required to count sheep publicly.',
@@ -191,7 +191,7 @@ export class TodoService {
         createdAt: new Date(Date.now() - 18000000).toISOString(),
       },
       {
-        id: Date.now() + 6,
+        id: 6,
         title: 'Replace crosswalk signals with motivational quotes',
         description:
           'Instead of "WALK/DON\'T WALK", display inspiring messages like "YOU GOT THIS!" and "BELIEVE IN YOUR CROSSING ABILITIES!"',
@@ -199,7 +199,7 @@ export class TodoService {
         createdAt: new Date(Date.now() - 21600000).toISOString(),
       },
       {
-        id: Date.now() + 7,
+        id: 7,
         title: 'Establish official town wizard position',
         description:
           'Every respectable municipality needs a wizard. Pointy hat and staff provided by city budget. Must know at least 3 card tricks.',
@@ -207,7 +207,7 @@ export class TodoService {
         createdAt: new Date(Date.now() - 25200000).toISOString(),
       },
       {
-        id: Date.now() + 8,
+        id: 8,
         title: 'Ban Mondays (or at least make them optional)',
         description:
           'Scientific petition to eliminate Mondays from the calendar. Proposed alternative: Two Saturdays in a row.',
@@ -216,7 +216,7 @@ export class TodoService {
       },
       // 4 accepted petitions
       {
-        id: Date.now() + 9,
+        id: 9,
         title: 'Install slide next to City Hall stairs',
         description:
           'Why walk down stairs when you can SLIDE? Added benefit: 300% increase in citizen engagement with municipal buildings.',
@@ -227,7 +227,7 @@ export class TodoService {
           'Approved! Engineering confirms stairs can support parallel slide installation. Mayor tested prototype and gave it two thumbs up (while sliding).',
       },
       {
-        id: Date.now() + 10,
+        id: 10,
         title: 'Free mayor high-fives every Friday',
         description:
           'Mayor must be available in town square every Friday 3-4 PM for high-fives, fist bumps, and occasional jazz hands.',
@@ -238,7 +238,7 @@ export class TodoService {
           'Mayor enthusiastically accepted! Calendar blocked, hand-strengthening exercises scheduled. May add elbow bumps option.',
       },
       {
-        id: Date.now() + 11,
+        id: 11,
         title: 'Dog park where humans are on leashes',
         description:
           'Revolutionary concept: Dogs run free, humans must stay on designated paths. Tables have turned.',
@@ -249,7 +249,7 @@ export class TodoService {
           'Approved as pilot program! Dogs voted 247-0 in favor. Human leashes will be provided in designer colors.',
       },
       {
-        id: Date.now() + 12,
+        id: 12,
         title: 'Rename "Potholes" to "Surprise Road Features"',
         description:
           "Rebranding initiative to improve citizen perception of infrastructure challenges. It's not a bug, it's a feature!",
@@ -261,7 +261,7 @@ export class TodoService {
       },
       // 3 rejected petitions
       {
-        id: Date.now() + 13,
+        id: 13,
         title: 'Replace all stop signs with "Please Proceed Cautiously" signs',
         description:
           'Stop signs are too aggressive. We should be nicer to drivers with polite suggestions instead.',
@@ -272,7 +272,7 @@ export class TodoService {
           'Traffic department says no. Also, lawyers said "ABSOLUTELY NOT" in all caps. Insurance company threatened to quit.',
       },
       {
-        id: Date.now() + 14,
+        id: 14,
         title: 'Make pigeons wear tiny hats',
         description:
           'Petition to require all municipal pigeons to wear miniature top hats for sophistication. 2,847 signatures collected.',
@@ -283,7 +283,7 @@ export class TodoService {
           "Pigeons refused to cooperate. Also, wildlife committee reminded us we can't actually make laws for birds. Who knew?",
       },
       {
-        id: Date.now() + 15,
+        id: 15,
         title: 'Declare war on neighboring town (water balloon division)',
         description:
           'Strategic initiative to settle the Great Bakery Dispute of 2024 through organized water balloon combat. Rules of engagement attached.',
