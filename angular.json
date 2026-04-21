@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "webinar-pure-angular": {
+    "ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "webinar-pure-angular:build:production"
+              "buildTarget": "ui:build:production"
             },
             "development": {
-              "buildTarget": "webinar-pure-angular:build:development"
+              "buildTarget": "ui:build:development"
             }
           },
           "defaultConfiguration": "development"
