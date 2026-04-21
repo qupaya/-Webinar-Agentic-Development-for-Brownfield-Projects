@@ -47,3 +47,8 @@ test-results/
 # System files
 .DS_Store
 Thumbs.db
+
+
+
+.nx/cache
+.nx/workspace-data

@@ -1,0 +1,76 @@
+{
+  "name": "ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {},
+  "sourceRoot": "apps/ui/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:application",
+      "options": {
+        "browser": "apps/ui/src/main.ts",
+        "tsConfig": "apps/ui/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/ui/public"
+          }
+        ],
+        "styles": [
+          "apps/ui/src/styles.css"
+        ],
+        "server": "apps/ui/src/main.server.ts",
+        "outputMode": "server",
+        "ssr": {
+          "entry": "apps/ui/src/server.ts"
+        },
+        "outputPath": "dist/ui"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kB",
+              "maximumError": "8kB"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{options.outputPath}"
+      ]
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "ui:build:production"
+        },
+        "development": {
+          "buildTarget": "ui:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 9001
+      }
+    },
+    "test": {
+      "executor": "@angular/build:unit-test"
+    }
+  }
+}

@@ -1,0 +1,225 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Role Toggle (for demo) -->
+    <div class="mb-4 flex justify-end">
+      <button
+        (click)="authService.toggleRole()"
+        class="px-4 py-2 rounded-md text-sm font-medium transition-colors"
+        [class.bg-purple-600]="authService.isAdmin()"
+        [class.bg-gray-600]="authService.isUser()"
+        [class.text-white]="true"
+        [class.hover:bg-purple-700]="authService.isAdmin()"
+        [class.hover:bg-gray-700]="authService.isUser()"
+      >
+        {{ authService.isAdmin() ? '👑 Admin Mode' : '👤 User Mode' }}
+      </button>
+    </div>
+
+    <div
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8"
+    >
+      <h1
+        class="text-3xl sm:text-4xl font-bold text-gray-900 cursor-pointer select-none"
+        (click)="onTitleClick()"
+      >
+        Municipality Petitions
+      </h1>
+      @if (authService.isAdmin()) {
+        <a
+          routerLink="/add"
+          class="w-full sm:w-auto text-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+        >
+          + New Petition
+        </a>
+      } @else {
+        <div
+          class="w-full sm:w-auto text-center px-6 py-3 bg-gray-300 text-gray-500 rounded-md cursor-not-allowed"
+          title="Admin access required"
+        >
+          + New Petition
+        </div>
+      }
+    </div>
+
+    <!-- Search -->
+    <div class="bg-white rounded-lg shadow p-4 sm:p-6 mb-6 sm:mb-8">
+      <label for="search" class="block text-sm font-medium text-gray-700 mb-2">
+        Search Petitions
+      </label>
+      <input
+        id="search"
+        type="text"
+        [value]="todoService.searchQuery()"
+        (input)="onSearchInput($event)"
+        placeholder="Search by title or description..."
+        class="w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <!-- Petition Columns -->
+    @if (!todoService.isHydrated()) {
+      <!-- Skeleton Loader -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-amber-700">Pending</h2>
+          <div class="space-y-3">
+            @for (skeleton of skeletons(); track $index) {
+              <div class="bg-white rounded-lg shadow p-4">
+                <div class="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
+              </div>
+            }
+          </div>
+        </div>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-green-700">Accepted</h2>
+          <div class="space-y-3">
+            @for (skeleton of skeletons(); track $index) {
+              <div class="bg-white rounded-lg shadow p-4">
+                <div class="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
+              </div>
+            }
+          </div>
+        </div>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-red-700">Rejected</h2>
+          <div class="space-y-3">
+            @for (skeleton of skeletons(); track $index) {
+              <div class="bg-white rounded-lg shadow p-4">
+                <div class="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    } @else {
+      <!-- Real Data -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+        <!-- Pending Column -->
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-amber-700">
+            Pending ({{ pendingPetitions().length }})
+          </h2>
+          @if (pendingPetitions().length === 0) {
+            <div
+              class="bg-white rounded-lg shadow p-4 sm:p-6 text-center text-gray-500 text-sm sm:text-base"
+            >
+              @if (todoService.searchQuery()) {
+                No pending petitions match your search
+              } @else {
+                No pending petitions
+              }
+            </div>
+          } @else {
+            <div class="space-y-3">
+              @for (petition of pendingPetitions(); track petition.id) {
+                <div
+                  class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer border-l-4 border-amber-500"
+                  (click)="navigateToDetail(petition.id)"
+                >
+                  <h3 class="font-semibold text-base sm:text-lg text-gray-900 mb-1">
+                    {{ petition.title }}
+                  </h3>
+                  @if (petition.description) {
+                    <p class="text-gray-600 text-sm mb-2 line-clamp-2">
+                      {{ petition.description }}
+                    </p>
+                  }
+                  <p class="text-xs text-gray-400">
+                    {{ petition.createdAt | date: 'MMM d, y' }}
+                  </p>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Accepted Column -->
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-green-700">
+            Accepted ({{ acceptedPetitions().length }})
+          </h2>
+          @if (acceptedPetitions().length === 0) {
+            <div
+              class="bg-white rounded-lg shadow p-4 sm:p-6 text-center text-gray-500 text-sm sm:text-base"
+            >
+              @if (todoService.searchQuery()) {
+                No accepted petitions match your search
+              } @else {
+                No accepted petitions yet
+              }
+            </div>
+          } @else {
+            <div class="space-y-3">
+              @for (petition of acceptedPetitions(); track petition.id) {
+                <div
+                  class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer border-l-4 border-green-500"
+                  (click)="navigateToDetail(petition.id)"
+                >
+                  <h3 class="font-semibold text-base sm:text-lg text-gray-900 mb-1">
+                    {{ petition.title }}
+                  </h3>
+                  @if (petition.description) {
+                    <p class="text-gray-600 text-sm mb-2 line-clamp-2">
+                      {{ petition.description }}
+                    </p>
+                  }
+                  @if (petition.processedReason) {
+                    <p class="text-green-700 text-sm mb-2 italic">{{ petition.processedReason }}</p>
+                  }
+                  <p class="text-xs text-gray-400">
+                    Processed: {{ petition.processedDate | date: 'MMM d, y' }}
+                  </p>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Rejected Column -->
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-red-700">
+            Rejected ({{ rejectedPetitions().length }})
+          </h2>
+          @if (rejectedPetitions().length === 0) {
+            <div
+              class="bg-white rounded-lg shadow p-4 sm:p-6 text-center text-gray-500 text-sm sm:text-base"
+            >
+              @if (todoService.searchQuery()) {
+                No rejected petitions match your search
+              } @else {
+                No rejected petitions yet
+              }
+            </div>
+          } @else {
+            <div class="space-y-3">
+              @for (petition of rejectedPetitions(); track petition.id) {
+                <div
+                  class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer border-l-4 border-red-500"
+                  (click)="navigateToDetail(petition.id)"
+                >
+                  <h3 class="font-semibold text-base sm:text-lg text-gray-900 mb-1">
+                    {{ petition.title }}
+                  </h3>
+                  @if (petition.description) {
+                    <p class="text-gray-600 text-sm mb-2 line-clamp-2">
+                      {{ petition.description }}
+                    </p>
+                  }
+                  @if (petition.processedReason) {
+                    <p class="text-red-700 text-sm mb-2 italic">{{ petition.processedReason }}</p>
+                  }
+                  <p class="text-xs text-gray-400">
+                    Processed: {{ petition.processedDate | date: 'MMM d, y' }}
+                  </p>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>
