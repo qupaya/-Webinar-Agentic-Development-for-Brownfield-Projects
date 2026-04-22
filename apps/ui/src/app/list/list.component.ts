@@ -1,4 +1,12 @@
-import { Component, computed, inject, signal, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  signal,
+  PLATFORM_ID,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +18,7 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './list.component.html',
+  styleUrl: './list.component.css',
 })
 export class ListComponent {
   protected readonly todoService = inject(TodoService);
@@ -17,9 +26,12 @@ export class ListComponent {
   private readonly router = inject(Router);
   private readonly platformId = inject(PLATFORM_ID);
 
+  @ViewChild('titleEl') private titleEl!: ElementRef<HTMLHeadingElement>;
+
   // Debug click tracking
   private debugClickCount = 0;
-  private debugClickTimeout: any = null;
+  private debugClickTimeout: ReturnType<typeof setTimeout> | null = null;
+  private titleLocked = false;
 
   // Computed signals for filtered petitions by status
   pendingPetitions = computed(() =>
@@ -73,25 +85,37 @@ export class ListComponent {
   }
 
   onTitleClick(): void {
-    // Clear existing timeout
+    if (this.titleLocked) return;
+
     if (this.debugClickTimeout) {
       clearTimeout(this.debugClickTimeout);
     }
 
-    // Increment click count
     this.debugClickCount++;
 
-    // Check if 7 clicks reached
     if (this.debugClickCount === 7) {
+      this.titleLocked = true;
+      this.triggerAnimation('shake');
       this.todoService.populateDebugData();
       this.debugClickCount = 0;
-      console.log('🐛 Debug mode activated: 15 example petitions added');
+      setTimeout(() => {
+        this.titleLocked = false;
+      }, 5000);
       return;
     }
 
-    // Reset counter after 800ms of no clicks
+    this.triggerAnimation('bounce');
+
     this.debugClickTimeout = setTimeout(() => {
       this.debugClickCount = 0;
     }, 800);
+  }
+
+  private triggerAnimation(type: 'bounce' | 'shake'): void {
+    const el = this.titleEl.nativeElement;
+    el.classList.remove('animate-title-bounce', 'animate-title-shake');
+    void el.offsetWidth; // Force reflow to restart the animation
+    el.classList.add(`animate-title-${type}`);
+    setTimeout(() => el.classList.remove(`animate-title-${type}`), type === 'bounce' ? 200 : 800);
   }
 }

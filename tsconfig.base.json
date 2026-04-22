@@ -12,7 +12,9 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "paths": {},
+    "paths": {
+      "@webinar/shared-models": ["libs/shared/models/src/index.ts"]
+    },
     "baseUrl": ".",
     "rootDir": "."
   },

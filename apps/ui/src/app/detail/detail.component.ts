@@ -16,6 +16,7 @@ import { AuthService } from '../services/auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, DatePipe, TitleCasePipe],
   templateUrl: './detail.component.html',
+  styleUrl: './detail.component.css',
 })
 export class DetailComponent implements OnInit {
   protected readonly todoService = inject(TodoService);
