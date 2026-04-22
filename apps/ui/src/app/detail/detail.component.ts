@@ -8,8 +8,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { TodoService, Todo } from '../services/todo.service';
-import { AuthService } from '../services/auth.service';
+import { TodoService, Todo } from '@webinar/ui-feature-todos';
+import { AuthService } from '@webinar/ui-api-services';
 
 @Component({
   selector: 'app-detail',

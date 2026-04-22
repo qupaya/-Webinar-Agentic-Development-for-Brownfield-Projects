@@ -10,8 +10,8 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { TodoService } from '../services/todo.service';
-import { AuthService } from '../services/auth.service';
+import { TodoService } from '@webinar/ui-feature-todos';
+import { AuthService } from '@webinar/ui-api-services';
 
 @Component({
   selector: 'app-list',

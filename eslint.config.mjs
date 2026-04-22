@@ -17,9 +17,34 @@ export default [
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
+            // Platform separation: angular code cannot import nestjs code and vice-versa
             {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
+              sourceTag: 'platform:angular',
+              onlyDependOnLibsWithTags: ['platform:angular', 'platform:shared'],
+            },
+            {
+              sourceTag: 'platform:nestjs',
+              onlyDependOnLibsWithTags: ['platform:nestjs', 'platform:shared'],
+            },
+            // Shared libs (e.g. shared-models) cannot import from anywhere
+            {
+              sourceTag: 'platform:shared',
+              onlyDependOnLibsWithTags: [],
+            },
+            // Apps cannot import other apps
+            {
+              sourceTag: 'type:app',
+              notDependOnLibsWithTags: ['type:app'],
+            },
+            // data-access libs can only depend on shared models (no feature/app imports)
+            {
+              sourceTag: 'type:data-access',
+              onlyDependOnLibsWithTags: ['platform:shared'],
+            },
+            // feature libs can depend on data-access and shared, but not apps
+            {
+              sourceTag: 'type:feature',
+              onlyDependOnLibsWithTags: ['type:data-access', 'platform:shared'],
             },
           ],
         },

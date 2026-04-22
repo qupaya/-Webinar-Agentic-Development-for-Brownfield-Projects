@@ -1,0 +1,17 @@
+{
+  "name": "api-services",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/api-services/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["platform:angular", "type:data-access"],
+  "targets": {
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "options": {}
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Injectable, signal, computed, inject, afterNextRender } from '@angular/core';
-import { TodoApiService } from './todo-api.service';
+import { TodoApiService } from '@webinar/ui-api-services';
 import { Todo } from '@webinar/shared-models';
 
 export type { Todo } from '@webinar/shared-models';

@@ -61,5 +61,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["platform:nestjs", "type:app"]
 }

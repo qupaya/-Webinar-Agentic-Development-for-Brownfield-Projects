@@ -14,7 +14,9 @@
     "module": "preserve",
     "paths": {
       "@webinar/shared-models": ["libs/shared/models/src/index.ts"],
-      "@webinar/api-entities": ["libs/api/entities/src/index.ts"]
+      "@webinar/api-entities": ["libs/api/entities/src/index.ts"],
+      "@webinar/ui-api-services": ["libs/ui/api-services/src/index.ts"],
+      "@webinar/ui-feature-todos": ["libs/ui/feature-todos/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."

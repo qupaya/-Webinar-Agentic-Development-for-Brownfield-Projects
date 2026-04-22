@@ -1,0 +1,17 @@
+{
+  "name": "feature-todos",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/feature-todos/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["platform:angular", "type:feature"],
+  "targets": {
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "options": {}
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
