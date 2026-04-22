@@ -1,4 +1,4 @@
-import { TodoEntity } from './todo.entity';
+import type { TodoEntity } from '@webinar/api-entities';
 
 export const DEMO_DATA: Partial<TodoEntity>[] = [
   {

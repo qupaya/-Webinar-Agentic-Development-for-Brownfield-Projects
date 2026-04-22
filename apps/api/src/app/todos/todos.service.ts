@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, OnModuleInit, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
-import { TodoEntity } from './todo.entity';
+import { TodoEntity } from '@webinar/api-entities';
 import { CreateTodoDto, UpdateTodoDto, Todo } from '@webinar/shared-models';
 
 @Injectable()
