@@ -9,6 +9,7 @@ export default [
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    ignores: ['apps/slides/**'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
