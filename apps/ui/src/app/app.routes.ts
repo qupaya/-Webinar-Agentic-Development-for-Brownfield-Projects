@@ -8,18 +8,18 @@ export const routes: Routes = [
   },
   {
     path: 'list',
-    loadComponent: () => import('./list/list.component').then((m) => m.ListComponent),
+    loadComponent: () => import('@webinar/ui-feature-list').then((m) => m.ListComponent),
   },
   {
     path: 'add',
-    loadComponent: () => import('./detail/detail.component').then((m) => m.DetailComponent),
+    loadComponent: () => import('@webinar/ui-feature-detail').then((m) => m.DetailComponent),
   },
   {
     path: 'detail/:id',
-    loadComponent: () => import('./detail/detail.component').then((m) => m.DetailComponent),
+    loadComponent: () => import('@webinar/ui-feature-detail').then((m) => m.DetailComponent),
   },
   {
     path: '**',
-    loadComponent: () => import('./not-found/not-found.component').then((m) => m.NotFoundComponent),
+    loadComponent: () => import('@webinar/ui-feature-not-found').then((m) => m.NotFoundComponent),
   },
 ];

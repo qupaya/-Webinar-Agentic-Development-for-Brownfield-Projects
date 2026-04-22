@@ -16,7 +16,10 @@
       "@webinar/shared-models": ["libs/shared/models/src/index.ts"],
       "@webinar/api-entities": ["libs/api/entities/src/index.ts"],
       "@webinar/ui-api-services": ["libs/ui/api-services/src/index.ts"],
-      "@webinar/ui-feature-todos": ["libs/ui/feature-todos/src/index.ts"]
+      "@webinar/ui-feature-todos": ["libs/ui/feature-todos/src/index.ts"],
+      "@webinar/ui-feature-list": ["libs/ui/feature-list/src/index.ts"],
+      "@webinar/ui-feature-detail": ["libs/ui/feature-detail/src/index.ts"],
+      "@webinar/ui-feature-not-found": ["libs/ui/feature-not-found/src/index.ts"]
     },
     "baseUrl": ".",
     "rootDir": "."
