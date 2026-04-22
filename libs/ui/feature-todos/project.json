@@ -4,7 +4,10 @@
   "sourceRoot": "libs/ui/feature-todos/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["platform:angular", "type:feature"],
+  "tags": [
+    "platform:angular",
+    "type:feature"
+  ],
   "targets": {
     "test": {
       "executor": "@nx/angular:unit-test",

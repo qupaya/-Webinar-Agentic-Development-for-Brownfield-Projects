@@ -74,5 +74,8 @@
       "executor": "@angular/build:unit-test"
     }
   },
-  "tags": ["platform:angular", "type:app"]
+  "tags": [
+    "platform:angular",
+    "type:app"
+  ]
 }

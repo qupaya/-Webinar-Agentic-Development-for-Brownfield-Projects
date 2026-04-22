@@ -3,5 +3,8 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/api/entities/src",
   "projectType": "library",
-  "tags": ["platform:nestjs", "type:data-access"]
+  "tags": [
+    "platform:nestjs",
+    "type:data-access"
+  ]
 }
