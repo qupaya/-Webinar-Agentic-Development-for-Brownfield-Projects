@@ -22,6 +22,8 @@
         #titleEl
         class="text-3xl sm:text-4xl font-bold text-gray-900 cursor-pointer select-none inline-block"
         (click)="onTitleClick()"
+        (keyup.enter)="onTitleClick()"
+        tabindex="0"
       >
         Municipality Petitions
       </h1>
@@ -119,6 +121,8 @@
                 <div
                   class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer border-l-4 border-amber-500"
                   (click)="navigateToDetail(petition.id)"
+                  (keyup.enter)="navigateToDetail(petition.id)"
+                  tabindex="0"
                 >
                   <h3 class="font-semibold text-base sm:text-lg text-gray-900 mb-1">
                     {{ petition.title }}
@@ -158,6 +162,8 @@
                 <div
                   class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer border-l-4 border-green-500"
                   (click)="navigateToDetail(petition.id)"
+                  (keyup.enter)="navigateToDetail(petition.id)"
+                  tabindex="0"
                 >
                   <h3 class="font-semibold text-base sm:text-lg text-gray-900 mb-1">
                     {{ petition.title }}
@@ -200,6 +206,8 @@
                 <div
                   class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer border-l-4 border-red-500"
                   (click)="navigateToDetail(petition.id)"
+                  (keyup.enter)="navigateToDetail(petition.id)"
+                  tabindex="0"
                 >
                   <h3 class="font-semibold text-base sm:text-lg text-gray-900 mb-1">
                     {{ petition.title }}
